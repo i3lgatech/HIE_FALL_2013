@@ -14,3 +14,5 @@ There are three class projects.
 Students, 
 Please create your own folder. Then put your code into this repository 
 so that your codes are not mixed up with other group's code.
+
+Please include your presentation slides in your group folder as well.
