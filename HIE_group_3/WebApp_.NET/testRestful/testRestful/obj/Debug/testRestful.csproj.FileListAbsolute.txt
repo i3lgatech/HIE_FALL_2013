@@ -1,0 +1,7 @@
+c:\users\psmm3\documents\visual studio 2012\Projects\testRestful\testRestful\bin\testRestful.dll
+c:\users\psmm3\documents\visual studio 2012\Projects\testRestful\testRestful\bin\testRestful.pdb
+c:\users\psmm3\documents\visual studio 2012\Projects\testRestful\testRestful\obj\Debug\testRestful.dll
+c:\users\psmm3\documents\visual studio 2012\Projects\testRestful\testRestful\obj\Debug\testRestful.pdb
+C:\Users\psmm3\Documents\Visual Studio 2012\Projects\testRestful\testRestful\obj\Debug\testRestful.csprojResolveAssemblyReference.cache
+C:\Users\psmm3\Documents\Visual Studio 2012\Projects\testRestful\testRestful\bin\MySql.Data.dll
+C:\Users\psmm3\Documents\Visual Studio 2012\Projects\testRestful\testRestful\bin\MySql.Web.dll

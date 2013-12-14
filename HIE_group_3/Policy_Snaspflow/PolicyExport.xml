@@ -1,0 +1,229 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <SNAPSflow>
+    <Version>2.8.2</Version>
+  </SNAPSflow>
+  <Policies>
+    <Policy_Id>4</Policy_Id>
+    <Policy_Name>Interface to webservice</Policy_Name>
+    <Status_Code>A</Status_Code>
+    <Description>Interface to the vizualisation webservice</Description>
+    <Pswd>(none)</Pswd>
+    <Update_Task_History>A</Update_Task_History>
+    <Policy_GUID>9c91a535-627e-4f08-ba72-cbff80c9c707</Policy_GUID>
+  </Policies>
+  <Policy_Rules>
+    <Policy_Id>4</Policy_Id>
+    <Step_Num>1</Step_Num>
+    <Task_Id>2</Task_Id>
+    <Chain_Policy_Id>0</Chain_Policy_Id>
+    <Parameters>&lt;Parameters&gt;
+  &lt;DataName&gt;PatientID&lt;/DataName&gt;
+  &lt;DataValue&gt;1422&lt;/DataValue&gt;
+&lt;/Parameters&gt;</Parameters>
+    <Description>Map_Metadata</Description>
+    <Status_Code>A</Status_Code>
+    <Map_Return_Value_To />
+  </Policy_Rules>
+  <Policy_Rules>
+    <Policy_Id>4</Policy_Id>
+    <Step_Num>2</Step_Num>
+    <Task_Id>2</Task_Id>
+    <Chain_Policy_Id>0</Chain_Policy_Id>
+    <Parameters>&lt;Parameters&gt;
+  &lt;DataName&gt;CCDFile&lt;/DataName&gt;
+  &lt;DataValue&gt;C:\Users\smurugan3\Desktop\postprocess\CCD_~PatientID~.xml&lt;/DataValue&gt;
+&lt;/Parameters&gt;</Parameters>
+    <Description>Map_Metadata</Description>
+    <Status_Code>A</Status_Code>
+    <Map_Return_Value_To />
+  </Policy_Rules>
+  <Policy_Rules>
+    <Policy_Id>4</Policy_Id>
+    <Step_Num>3</Step_Num>
+    <Task_Id>45</Task_Id>
+    <Chain_Policy_Id>0</Chain_Policy_Id>
+    <Parameters>&lt;Parameters&gt;
+  &lt;DestURL&gt;http://hit2.nimbus.cip.gatech.edu/HIESvc/HIE.svc/GetClinicalSummary?PatientID=~PatientID~&lt;/DestURL&gt;
+  &lt;Filename&gt;C:\Users\smurugan3\Desktop\postprocess\CCD_~PatientID~.xml&lt;/Filename&gt;
+  &lt;HTTPGetResult&gt;ToFile&lt;/HTTPGetResult&gt;
+  &lt;XMLTagOrFilename&gt;C:\Users\smurugan3\Desktop\out.txt&lt;/XMLTagOrFilename&gt;
+  &lt;CheckSSLCertificate&gt;No&lt;/CheckSSLCertificate&gt;
+  &lt;TestHTTPGet&gt;(Double-click here)&lt;/TestHTTPGet&gt;
+&lt;/Parameters&gt;</Parameters>
+    <Description>XML_HTTP_Get</Description>
+    <Status_Code>A</Status_Code>
+    <Map_Return_Value_To />
+  </Policy_Rules>
+  <Policy_Rules>
+    <Policy_Id>4</Policy_Id>
+    <Step_Num>4</Step_Num>
+    <Task_Id>45</Task_Id>
+    <Chain_Policy_Id>0</Chain_Policy_Id>
+    <Parameters>&lt;Parameters&gt;
+  &lt;DestURL&gt;http://hit2.nimbus.cip.gatech.edu/HIESvc/HIE.svc/GetMedication?PatientID=~PatientID~&lt;/DestURL&gt;
+  &lt;Filename&gt;C:\Users\smurugan3\Desktop\postprocess\Medications_~PatientID~.xml&lt;/Filename&gt;
+  &lt;HTTPGetResult&gt;ToFile&lt;/HTTPGetResult&gt;
+  &lt;XMLTagOrFilename&gt;C:\Users\smurugan3\Desktop\postprocess\Medications_~PatientID~_Resp.xml&lt;/XMLTagOrFilename&gt;
+  &lt;CheckSSLCertificate&gt;No&lt;/CheckSSLCertificate&gt;
+  &lt;TestHTTPGet&gt;(Double-click here)&lt;/TestHTTPGet&gt;
+&lt;/Parameters&gt;</Parameters>
+    <Description>XML_HTTP_Get</Description>
+    <Status_Code>A</Status_Code>
+    <Map_Return_Value_To />
+  </Policy_Rules>
+  <Policy_Rules>
+    <Policy_Id>4</Policy_Id>
+    <Step_Num>5</Step_Num>
+    <Task_Id>2</Task_Id>
+    <Chain_Policy_Id>0</Chain_Policy_Id>
+    <Parameters>&lt;Parameters&gt;
+  &lt;DataName&gt;FullText&lt;/DataName&gt;
+  &lt;DataValue&gt;$GetTextBetween($ReadFile(~CCDFile~)$,'"','&amp;gt;"')$&lt;/DataValue&gt;
+&lt;/Parameters&gt;</Parameters>
+    <Description>Map_Metadata</Description>
+    <Status_Code>A</Status_Code>
+    <Map_Return_Value_To />
+  </Policy_Rules>
+  <Policy_Rules>
+    <Policy_Id>4</Policy_Id>
+    <Step_Num>6</Step_Num>
+    <Task_Id>2</Task_Id>
+    <Chain_Policy_Id>0</Chain_Policy_Id>
+    <Parameters>&lt;Parameters&gt;
+  &lt;DataName&gt;FullText2&lt;/DataName&gt;
+  &lt;DataValue&gt;~FullText~&amp;gt;&lt;/DataValue&gt;
+&lt;/Parameters&gt;</Parameters>
+    <Description>Map_Metadata</Description>
+    <Status_Code>A</Status_Code>
+    <Map_Return_Value_To />
+  </Policy_Rules>
+  <Policy_Rules>
+    <Policy_Id>4</Policy_Id>
+    <Step_Num>7</Step_Num>
+    <Task_Id>2</Task_Id>
+    <Chain_Policy_Id>0</Chain_Policy_Id>
+    <Parameters>&lt;Parameters&gt;
+  &lt;DataName&gt;FullText3&lt;/DataName&gt;
+  &lt;DataValue&gt;$Replace(~FullText2~,\,)$&lt;/DataValue&gt;
+&lt;/Parameters&gt;</Parameters>
+    <Description>Map_Metadata</Description>
+    <Status_Code>A</Status_Code>
+    <Map_Return_Value_To />
+  </Policy_Rules>
+  <Policy_Rules>
+    <Policy_Id>4</Policy_Id>
+    <Step_Num>8</Step_Num>
+    <Task_Id>6</Task_Id>
+    <Chain_Policy_Id>0</Chain_Policy_Id>
+    <Parameters>&lt;Parameters&gt;
+  &lt;IndexFilename&gt;C:\Users\smurugan3\Desktop\postprocess\CCD_Parsed_~PatientID~.xml&lt;/IndexFilename&gt;
+  &lt;IndexTemplate&gt;C:\Users\smurugan3\Desktop\postprocess\CCD_Template.xml&lt;/IndexTemplate&gt;
+  &lt;Append&gt;No&lt;/Append&gt;
+&lt;/Parameters&gt;</Parameters>
+    <Description>Index_File_Write</Description>
+    <Status_Code>A</Status_Code>
+    <Map_Return_Value_To />
+  </Policy_Rules>
+  <Policy_Rules>
+    <Policy_Id>4</Policy_Id>
+    <Step_Num>9</Step_Num>
+    <Task_Id>82</Task_Id>
+    <Chain_Policy_Id>0</Chain_Policy_Id>
+    <Parameters>&lt;Parameters&gt;
+  &lt;To&gt;mgshunmugam@gmail.com&lt;/To&gt;
+  &lt;CC&gt;&lt;/CC&gt;
+  &lt;BCC&gt;&lt;/BCC&gt;
+  &lt;From&gt;prabushyam@gatech.edu&lt;/From&gt;
+  &lt;Priority&gt;Normal&lt;/Priority&gt;
+  &lt;Subj&gt;Test Mail from Snapsflow 1 - ~File.Filename~&lt;/Subj&gt;
+  &lt;Text&gt;C:\Users\smurugan3\Desktop\postprocess\CCD_~PatientID~.xml
+====
+~FullText~
+====
+~FullText2~
+====
+~FullText3~
+
+&lt;/Text&gt;
+  &lt;ASCIIFile&gt;&lt;/ASCIIFile&gt;
+  &lt;Attachments&gt;C:\Users\smurugan3\Desktop\postprocess\CCD_Parsed_~PatientID~.xml&lt;/Attachments&gt;
+  &lt;LoadEmlFilename&gt;&lt;/LoadEmlFilename&gt;
+  &lt;SaveEmlFilename&gt;&lt;/SaveEmlFilename&gt;
+  &lt;SMTPServer&gt;smtp.mail.gatech.edu&lt;/SMTPServer&gt;
+  &lt;Port&gt;465&lt;/Port&gt;
+  &lt;Username&gt;prabushyam@gatech.edu&lt;/Username&gt;
+  &lt;Password&gt;askshell41*&lt;/Password&gt;
+  &lt;SecureSSL&gt;Yes&lt;/SecureSSL&gt;
+  &lt;SMTPAuthMethod&gt;LOGIN&lt;/SMTPAuthMethod&gt;
+  &lt;TestLogin&gt;(Double-click here)&lt;/TestLogin&gt;
+&lt;/Parameters&gt;</Parameters>
+    <Description>Email_Send</Description>
+    <Status_Code>I</Status_Code>
+    <Map_Return_Value_To />
+  </Policy_Rules>
+  <Policy_Rules>
+    <Policy_Id>4</Policy_Id>
+    <Step_Num>10</Step_Num>
+    <Task_Id>24</Task_Id>
+    <Chain_Policy_Id>0</Chain_Policy_Id>
+    <Parameters>&lt;Parameters&gt;
+  &lt;To&gt;SarahBerger@direct.healthvault-ppe.com&lt;/To&gt;
+  &lt;CC&gt;&lt;/CC&gt;
+  &lt;BCC&gt;&lt;/BCC&gt;
+  &lt;From&gt;hub@hisp.i3l.gatech.edu&lt;/From&gt;
+  &lt;Priority&gt;Normal&lt;/Priority&gt;
+  &lt;Subj&gt;Test from I3L - CCD&lt;/Subj&gt;
+  &lt;Text&gt;Test&lt;/Text&gt;
+  &lt;ASCIIFile&gt;&lt;/ASCIIFile&gt;
+  &lt;Attachments&gt;C:\Users\smurugan3\Desktop\postprocess\CCD_Parsed_~PatientID~.xml&lt;/Attachments&gt;
+  &lt;SMTPServer&gt;hisp.i3l.gatech.edu&lt;/SMTPServer&gt;
+  &lt;Port&gt;465&lt;/Port&gt;
+  &lt;Username&gt;hub@hisp.i3l.gatech.edu&lt;/Username&gt;
+  &lt;Password&gt;i3lworks&lt;/Password&gt;
+  &lt;SecureSSL&gt;Yes&lt;/SecureSSL&gt;
+  &lt;SMTPAuthMethod&gt;AUTO&lt;/SMTPAuthMethod&gt;
+  &lt;TestLogin&gt;(Double-click here)&lt;/TestLogin&gt;
+&lt;/Parameters&gt;</Parameters>
+    <Description>Send_Mail</Description>
+    <Status_Code>A</Status_Code>
+    <Map_Return_Value_To />
+  </Policy_Rules>
+  <Policy_Rules>
+    <Policy_Id>4</Policy_Id>
+    <Step_Num>11</Step_Num>
+    <Task_Id>0</Task_Id>
+    <Chain_Policy_Id>0</Chain_Policy_Id>
+    <Parameters>&lt;Parameters&gt;
+  &lt;ReturnValue&gt;~LastReturnValue~&lt;/ReturnValue&gt;
+&lt;/Parameters&gt;</Parameters>
+    <Description>Policy_Completed</Description>
+    <Status_Code>A</Status_Code>
+    <Map_Return_Value_To />
+  </Policy_Rules>
+  <Source_Type_Policy>
+    <Source_Type_Policy_Id>8</Source_Type_Policy_Id>
+    <Source_Type_Id>2</Source_Type_Id>
+    <Source_Name>C:\Users\smurugan3\Desktop\input</Source_Name>
+    <Scan_Interval>1</Scan_Interval>
+    <Policy_Id>4</Policy_Id>
+    <Status_Code>A</Status_Code>
+    <Priority>1</Priority>
+    <Filter>*.txt</Filter>
+    <source_direction_id>0</source_direction_id>
+    <Monitor_Name>(none)</Monitor_Name>
+    <Delete_File_When_Done>Y</Delete_File_When_Done>
+    <Retrieve_Attachments> </Retrieve_Attachments>
+    <Delete_Attachments_When_Done> </Delete_Attachments_When_Done>
+    <Delete_Email_When_Read> </Delete_Email_When_Read>
+    <merge_metadata>Y</merge_metadata>
+    <Get_Fax_Image />
+    <Fax_Control1 />
+    <Debug_Mode />
+    <Log_Level />
+    <Log_Filename />
+    <Log_Message_Events />
+    <Log_Data_Events />
+    <Log_Socket_Events />
+  </Source_Type_Policy>
+</NewDataSet>
